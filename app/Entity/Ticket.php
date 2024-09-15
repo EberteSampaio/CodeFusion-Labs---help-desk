@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Models\User;
 use Carbon\Carbon;
 
 class Ticket
