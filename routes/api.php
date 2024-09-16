@@ -10,3 +10,5 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix'=>'auth'], function (){
     Route::post('register',[\App\Http\Controllers\Auth\AuthController::class,'register'])->name('auth.register');
 });
+
+Route::apiResource('/category',\App\Http\Controllers\Category\CategoryController::class);

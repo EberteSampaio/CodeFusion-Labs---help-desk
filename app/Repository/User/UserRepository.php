@@ -2,7 +2,7 @@
 
 namespace App\Repository\User;
 
-use App\Exceptions\UserCreationException;
+use App\Exceptions\User\UserCreationException;
 use App\Interfaces\User\UserRepositoryInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;

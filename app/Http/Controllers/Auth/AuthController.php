@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Exceptions\UserCreationException;
+use App\Exceptions\User\UserCreationException;
 use App\Http\Requests\Auth\ValidateUserCreationRequest;
 use App\Interfaces\Auth\AuthServiceInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controller;
 
-class AuthController
+class AuthController extends Controller
 {
     private AuthServiceInterface $authService;
 

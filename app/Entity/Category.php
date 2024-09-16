@@ -9,18 +9,22 @@ class Category
     private ?int $id;
     private string $name;
     private string $description;
-    private Carbon $createdAt;
-    private Carbon $updatedAt;
-    private Carbon $deletedAt;
+    private string $createdAt;
+    private string $updatedAt;
+    private ?string $deletedAt;
 
-    public function __construct(?int $id, string $name, string $description, Carbon $createdAt, Carbon $updatedAt, Carbon $deletedAt)
+    public function __construct(string $name, string $description)
     {
-        $this->setId($id);
         $this->setName($name);
         $this->setDescription($description);
-        $this->setCreatedAt($createdAt);
-        $this->setUpdatedAt($updatedAt);
-        $this->setDeletedAt($deletedAt);
+    }
+
+    public function setAllDateAttributes(string $create, string $update, ?string $delete) : void
+    {
+
+        $this->setCreatedAt(Carbon::parse($create));
+        $this->setUpdatedAt(Carbon::parse($update));
+        $this->setDeletedAt((is_null($delete)) ? null : Carbon::parse($update));
     }
 
     public function getId(): ?int
@@ -53,34 +57,45 @@ class Category
         $this->description = $description;
     }
 
-    public function getCreatedAt(): Carbon
+    public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(Carbon $createdAt): void
+    public function setCreatedAt(string $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): Carbon
+    public function getUpdatedAt(): string
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(Carbon $updatedAt): void
+    public function setUpdatedAt(string $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    public function getDeletedAt(): Carbon
+    public function getDeletedAt(): ?string
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(Carbon $deletedAt): void
+    public function setDeletedAt(?string $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }
 
+    public function info(): array
+    {
+     return [
+         'id'          => $this->getId(),
+         'name'        => $this->getName(),
+         'description' => $this->getDescription(),
+         'created_at'  => $this->getCreatedAt(),
+         'updated_at'  => $this->getUpdatedAt(),
+         'deleted_at'  => $this->getDeletedAt(),
+     ];
+    }
 }
